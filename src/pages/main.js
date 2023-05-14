@@ -5,6 +5,7 @@ import { MdLogin } from 'react-icons/md';
 
 import HeadMeta from '../components/HeadMeta';
 import Logo from '../icons/logo';
+import Footer from '../components/Footer';
 
 const Main = () => {
   const style = {
@@ -47,6 +48,7 @@ const Main = () => {
         </div>
         <Logo />
       </div>
+      <Footer />
     </>
   );
 };
