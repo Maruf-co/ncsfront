@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { MdLogin } from 'react-icons/md';
 
+import CornerLogo from '../components/CornerLogo';
 import HeadMeta from '../components/HeadMeta';
 
 const Login = () => {
-  const [loginData, setLoginData] = useState({
-    login: '',
-    password: '',
-  });
-
-  const [isSignUp, setIsSignUp] = useState(false);
-
   const style = {
     wrap: 'flex items-center justify-center m-auto w-full h-screen',
     signUpButton: 'fixed top-8 right-10 text-pff-blue-500 flex hover:text-black',
@@ -23,22 +17,43 @@ const Login = () => {
     submitButton: 'bg-pff-yellow-400 rounded-lg px-6 py-3 mt-4 hover:bg-pff-yellow-500',
   };
 
-  const handleChangeForm = () => {
-    setIsSignUp(!isSignUp);
-  };
+  const [loginData, setLoginData] = useState({
+    phone: '',
+    sms: '',
+  });
+
+  const [isSignIn, setIsSignIn] = useState(false);
+  const [counter, setCounter] = useState(5);
+  const [isTimerOn, setIsTimerOn] = useState(false);
+
+  useEffect(() => {
+    if (counter > 0 && isTimerOn) {
+      setTimeout(setCounter, 1000, counter - 1);
+    } else {
+      setIsTimerOn(false);
+    }
+  }, [counter, isTimerOn]);
 
   const handleChange = (event) => {
     const value = event.target.value;
     setLoginData({ ...loginData, [event.target.id]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmitSms = (event) => {
     event.preventDefault();
     console.log('Submit!', loginData);
+    setIsSignIn(true);
+    setIsTimerOn(true);
+  };
+
+  const handleSubmitLogin = (event) => {
+    event.preventDefault();
+    console.log('Submit!', loginData);
+    setIsSignIn(true);
   };
 
   const meta = {
-    title: `Pirozhkoff | Sign ${isSignUp ? 'Up' : 'In'}`,
+    title: 'Pirozhkoff | Sign In',
     description:
       "Pirozhkoff's authorization page where you can sign in or sign up to create your new account",
   };
@@ -46,46 +61,56 @@ const Login = () => {
   const inputs = {
     signIn: [
       {
-        id: 'login',
-        type: 'text',
-        placeholder: 'Email or phone number',
+        id: 'phone',
+        name: 'phone',
+        type: 'tel',
+        pattern: '+7([0-9]{3})-[0-9]{3}-[0-9]{2}-[0-9]{2}',
+        required: true,
+        placeholder: 'Phone number',
+        value: loginData.phone,
       },
       {
-        id: 'password',
-        type: 'password',
-        placeholder: 'Password',
+        id: 'sms',
+        placeholder: 'sms',
+        type: 'text',
+        name: 'token',
+        inputmode: 'numeric',
+        pattern: '[0-9]',
+        autocomplete: 'one-time-code',
       },
     ],
-    // temporarily cloned signIn body
-    signUp: [
+    sms: [
       {
-        id: 'login',
-        type: 'text',
-        placeholder: 'Email or phone number',
-      },
-      {
-        id: 'password',
-        type: 'password',
-        placeholder: 'Password',
+        id: 'phone',
+        name: 'phone',
+        type: 'tel',
+        pattern: '+7([0-9]{3})-[0-9]{3}-[0-9]{2}-[0-9]{2}',
+        required: true,
+        placeholder: 'Phone number',
       },
     ],
   };
 
-  const loginForm = (
-    <form onSubmit={handleSubmit} className={style.form}>
-      {inputs.signIn.map((input) => {
-        return <input {...input} onChange={handleChange} className={style.input} />;
+  const smsForm = (
+    <form onSubmit={handleSubmitSms} className={style.form}>
+      {inputs.sms.map((input, id) => {
+        return <input key={id} {...input} onChange={handleChange} className={style.input} />;
       })}
-      <button className={style.submitButton}>Sign In</button>
+      <button className={style.submitButton}>Get SMS</button>
     </form>
   );
 
-  const signUpForm = (
-    <form onSubmit={handleSubmit} className={style.form}>
-      {inputs.signUp.map((input) => {
-        return <input {...input} onChange={handleChange} className={style.input} />;
+  const loginForm = (
+    <form onSubmit={handleSubmitLogin} className={style.form}>
+      {inputs.signIn.map((input, id) => {
+        return <input key={id} {...input} onChange={handleChange} className={style.input} />;
       })}
-      <button className={style.submitButton}>Sign Up</button>
+      {isTimerOn ? (
+        <div className="text-gray-400">Request another sms after {counter} seconds </div>
+      ) : (
+        <button className={style.submitButton}>Request another sms</button>
+      )}
+      <button className={style.submitButton}>Sign In</button>
     </form>
   );
 
@@ -93,13 +118,14 @@ const Login = () => {
     <>
       <HeadMeta {...meta} />
       <div className={style.wrap}>
-        <button onClick={handleChangeForm} className={style.signUpButton}>
-          {isSignUp ? 'Sign In' : 'Sign Up'}
+        <CornerLogo />
+        <button onClick={() => {}} className={style.signUpButton}>
+          Sign Up
           <MdLogin size={24} className={style.signUpIcon} />
         </button>
         <div className={style.container}>
           <h3 className={style.title}>Sign in to Pirozhkoff</h3>
-          {isSignUp ? signUpForm : loginForm}
+          {isSignIn ? loginForm : smsForm}
         </div>
       </div>
     </>

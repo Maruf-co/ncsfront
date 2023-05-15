@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { Fragment } from 'react';
 
 const ExpensesTable = ({ className, expenses }) => {
@@ -5,6 +6,7 @@ const ExpensesTable = ({ className, expenses }) => {
     wrap: className,
     date: 'bg-gray-200 text-gray-400 py-2 px-3',
     expenseWrap: 'flex justify-between items-center border-b-[0.5px] py-4 px-2 hover:bg-gray-100',
+    expenseLogo: 'bg-cover rounded-full w-12 h-12',
   };
 
   return (
@@ -16,11 +18,10 @@ const ExpensesTable = ({ className, expenses }) => {
 
             {day.list.map((expense, j) => {
               const [money, rest] = expense.amount.split(',');
-
               return (
                 <div key={`${i}_${j}`} className={style.expenseWrap}>
                   <div className="flex items-center">
-                    {expense.icon}
+                    <div className={cn(expense.icon, style.expenseLogo)} />
                     <div className="flex flex-col ml-3">
                       <span className="text-gray-500">{expense.account}</span>
                       <span className="text-lg mt-1">{expense.organization}</span>
