@@ -39,6 +39,12 @@ const Profile = () => {
       name: 'Registration Address',
       placeholder: '199406, Saint-Petersburg, Shevchenko st., 21',
     },
+    {
+      title: 'Passport',
+      subtitle: 'Passport to validate your personal data while taking credits, investments, etc',
+      name: 'Passport file:',
+      placeholder: 'my_passport.pdf',
+    },
   ];
 
   return (

@@ -6,6 +6,26 @@ import HeadMeta from '../components/HeadMeta';
 import Footer from '../components/Footer';
 import CornerLogo from '../components/CornerLogo';
 
+// import { useEffect, useState } from 'react';
+// const getUsersList = async (JWT) => {
+//   const url = '89.208.104.142:8000/api/v1/admin/users';
+
+//   const headers = {
+//     'content-type': 'application/json',
+//     accept: 'application/json',
+//     authorization: JWT,
+//   };
+
+//   const res = await fetch(url, {
+//     method: 'GET',
+//     headers,
+//   })
+//     .then((response) => response.json())
+//     .catch((error) => console.error(error));
+
+//   return res;
+// };
+
 const UsersList = () => {
   const style = {
     wrap: 'flex w-full h-full justify-start',
@@ -17,7 +37,13 @@ const UsersList = () => {
     tdata: 'text-xl p-4',
   };
 
-  console.log(usersList);
+  // const [usersList, setUsersList] = useState({});
+
+  // useEffect(() => {
+  //   const res = getUsersList();
+
+  //   setUsersList(res);
+  // }, []);
 
   return (
     <>
