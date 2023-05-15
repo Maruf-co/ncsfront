@@ -18,6 +18,21 @@ npm start
 npm run build
 ```
 
+## App pages
+
+```
+https://pirozhkoff.vercel.app/ - main
+https://pirozhkoff.vercel.app/login - login
+https://pirozhkoff.vercel.app/profile - user profile
+https://pirozhkoff.vercel.app/bank - bank page
+https://pirozhkoff.vercel.app/users - list of users
+
+```
+
+Mocks are in:
+
+**./src/api/mocks.js**
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

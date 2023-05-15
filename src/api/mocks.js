@@ -83,7 +83,7 @@ export const usersList = [
     hashed_password: 'aWxpa2VhbmltZQ==',
     inn: '8495738667440',
     snils: '77055948339764',
-    role: 'Client',
+    role: 'base',
   },
   {
     id: 'asdjlRFvhjn43cNiu2w3yh289',
@@ -95,7 +95,7 @@ export const usersList = [
     hashed_password: 'ZXJ6aGFub3phdnJvc2V2cw==',
     inn: '123456789012',
     snils: '12345678901234',
-    role: 'Support',
+    role: 'employee',
   },
   {
     id: 'cjfdbncjHfnvkHJFkvrci47=3d',
@@ -107,7 +107,7 @@ export const usersList = [
     hashed_password: 'ZXJ6aGFub3phdnJvc2V2cw==',
     inn: '349845155742',
     snils: '57384930672811',
-    role: 'Admin',
+    role: 'admin',
   },
   {
     id: 'viufhHdfoJgvX57cv40vcl=jeh',
@@ -120,7 +120,7 @@ export const usersList = [
     hashed_password: 'aWxvdmFjYXRzcHVycg==',
     inn: '825946108739',
     snils: '42746945611274',
-    role: 'Client',
+    role: 'employee',
   },
   {
     id: 'hfieuhDkgeJ45IDhg=fjk',
@@ -133,6 +133,6 @@ export const usersList = [
     hashed_password: 'aWxvdmFteXNlbGY=',
     inn: '098765432184',
     snils: '48296733904552',
-    role: 'Client',
+    role: 'employee',
   },
 ];
